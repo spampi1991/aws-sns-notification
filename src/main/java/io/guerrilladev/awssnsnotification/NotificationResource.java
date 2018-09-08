@@ -1,5 +1,6 @@
 package io.guerrilladev.awssnsnotification;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,7 +24,9 @@ public class NotificationResource {
 	}
 
 	@PostMapping("/notification")
-	public void handleNotification(WebRequest request, @RequestBody Notification msg) throws MalformedURLException, IOException {
+	public void handleNotification(WebRequest request, @RequestBody String body) throws MalformedURLException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		Notification msg = mapper.readValue(body, Notification.class);
 		String messageType = request.getHeader("x-amz-sns-message-type");
 		LOG.info("SNS message type {}", messageType);
 		if (messageType == null) {

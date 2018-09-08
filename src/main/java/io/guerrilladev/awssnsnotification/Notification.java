@@ -26,6 +26,9 @@ public class Notification {
 	@JsonProperty("SubscribeURL")
 	private String subscribeUrl;
 	
+	@JsonProperty("UnsubscribeURL")
+	private String unSubscribeUrl;
+	
 	@JsonProperty("Timestamp")
 	private String timestamp;
 	
@@ -124,5 +127,13 @@ public class Notification {
 
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+	
+	public String getUnSubscribeUrl() {
+		return unSubscribeUrl;
+	}
+
+	public void setUnSubscribeUrl(String unSubscribeUrl) {
+		this.unSubscribeUrl = unSubscribeUrl;
 	}
 }
